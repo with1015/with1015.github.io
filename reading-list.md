@@ -1,22 +1,24 @@
 ---
 title: Reading List
-subtitle: a list of books I read
+subtitle: A list of paper I read
 layout: "page"
 icon: fa-book
 order: 3
 ---
 
-I love books! Here are some I'm reading now:
+Interesting Field: cloud computing, machine learning platform, large scale distributed system
 
-1. Robert Burton: *The Anatomy of Melancholy*
-2. Robert Musil: *The Man Without Qualities*
-3. Kazuo Ishiguro: *The Unconsoled*
-4. Malcolm Lowry: *Under the Volcano*
-5. Virginia Woolf: *The Waves*
-6. James Joyce: *Finnegans Wake*
-7. Thomas Wolfe: *Look Homeward, Angel*
-8. William Thackeray: *Pendennis*
-9. Karl Marx: *Capital*
-10. James Woodforde: *The Diary of A Country Parson*
-
-source: [The Guardian](https://www.theguardian.com/books/booksblog/2011/jan/04/best-boring-books)
+1. AlloX
+2. Horovod
+3. Accurate, large minibatch sgd: Training imagenet in 1 hour
+4. Gpipe
+5. PipeDream
+6. HetPipe
+7. Heterogeneity-aware Distributed Parameter Servers
+8. More Effective Distributed ML via a Stale Synchronous Parallel Parameter Server
+9. Ray
+10. Reitarii
+11. Quasar
+12. Holistic VM Placement for Distributed Parallel Applications in Heterogeneous Clusters
+13. Achieving Fairness-aware Two-level Scheduling for Heterogeneous Distributed Systems
+14. Dominant Resource Fairness: Fair Allocation of Multiple Resource Types
