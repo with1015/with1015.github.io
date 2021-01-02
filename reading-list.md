@@ -22,3 +22,4 @@ Interesting Field: cloud computing, machine learning platform, large scale distr
 12. Holistic VM Placement for Distributed Parallel Applications in Heterogeneous Clusters
 13. Achieving Fairness-aware Two-level Scheduling for Heterogeneous Distributed Systems
 14. Dominant Resource Fairness: Fair Allocation of Multiple Resource Types
+15. Hipster: Hybrid Task Manager for Latency-Critical Cloud Workloads
