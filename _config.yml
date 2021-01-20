@@ -64,5 +64,5 @@ theme: jekyll-theme-prologue
 collections: [sections]
 
 # For pagination
-paginate: 10
-paginate_path: "/page:num/"
+#paginate: 10
+#paginate_path: "/page:num/"
