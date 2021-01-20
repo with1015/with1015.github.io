@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{%- assign _posts = paginator.posts | sort: 'date' | reverse -%}
+{%- assign _posts = site.posts | sort: 'date' | reverse -%}
 {%- include header.html scrolly_nav=_posts -%}
 <!-- Main -->
 <div id="main">
@@ -22,18 +22,4 @@ layout: default
 		{%- assign _content = _excerpt | append: _link -%}
 		{%- include section.html title=_title subtitle=_subtitle content=_content -%}
 	{%- endfor -%}
-	
-	<div class="pagination">
-  		{% if paginator.previous_page %}
-    			<a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
-  		{% else %}
-    			<span class="previous">Previous</span>
-  		{% endif %}
-  		<span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  		{% if paginator.next_page %}
-    			<a href="{{ paginator.next_page_path }}" class="next">Next</a>
-  		{% else %}
-    			<span class="next ">Next</span>
-  		{% endif %}
-	</div>
 </div>
