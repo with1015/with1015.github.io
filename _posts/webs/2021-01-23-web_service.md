@@ -1,7 +1,11 @@
-# Web & Web Service
+---
+title: "Web & Web service"
+author: Hyunjoon Jeong
+layout: web_post
+category: webs
+---
 
-Done: No
-번호: 2
+# Web & Web Service
 
 > 여러분들은 **Web Service** 라는 말을 들었을 때, 어떤 것들이 생각나시나요?
 
