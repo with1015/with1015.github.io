@@ -5,6 +5,8 @@ layout: web_post
 category: webs
 ---
 
+본 글은 UNIST 멋쟁이사자처럼 9기에서 사용되는 Web & Django 강의에 사용되는 글임을 알려드립니다.
+
 # Web & Web Service
 
 > 여러분들은 **Web Service** 라는 말을 들었을 때, 어떤 것들이 생각나시나요?
