@@ -1,7 +1,7 @@
 ---
 title: "Web & Web service"
 author: Hyunjoon Jeong
-layout: web_post
+layout: post
 category: webs
 ---
 
