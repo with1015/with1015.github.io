@@ -23,3 +23,8 @@ Interesting Field: cloud computing, machine learning platform, large scale distr
 13. Achieving Fairness-aware Two-level Scheduling for Heterogeneous Distributed Systems
 14. Dominant Resource Fairness: Fair Allocation of Multiple Resource Types
 15. Hipster: Hybrid Task Manager for Latency-Critical Cloud Workloads
+
+Disaggregation system  
+
+1. Disaggregation and the Application
+2. LegoOS: A Disseminated, Distributed OS for Hardware Resource Disaggregation
