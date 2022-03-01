@@ -3,24 +3,21 @@ layout: about
 ---
 
 # About Me
-There is no specific format here. You can fill out the form you want.  
-For example, you might want to write a brief introduction about your self, experience, interests, publications, and other information.  
-I wrote "about me", "career", and "interests" on this page as an example.  
+I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 
 <br/>
 
-# Career
-* Second Company (2012/01 ~ )
-  * Web Application Firewall
-    * Developed TCP network acceleration module.
-    * Developde Application User Interface.
-* First Company (2011/01 ~ 2011/12)
-  * VPN Development Company
-  * Team Leader of VPN Development Div.
+# Education
+* B.S in UNIST (2015/03 ~ 2021/02)
+  * 1st Track Computer Science & Engineering
+  * 2nd Track Electrical & Electronic Engineering
+* M.S in UNIST (2021/03 ~ )
+  * Computer Science & Engineering
+  * System Software Lab (SSL)
 
 <br/>
 
-# Interests
-I am interested in technology trends.  
-I'm not afraid to learn languages, but I enjoy using Python.  
-I like to automate and reduce annoying things.  
+# Research field
+* Distributed machine learning
+* Resource management in distributed environment
+* Cloud computing
