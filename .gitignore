@@ -1,6 +1,5 @@
-/_site
-*.gem
+_site
 .sass-cache
-Gemfile.lock
-/assets/images
-.gitignore
+.jekyll-cache
+.jekyll-metadata
+vendor
