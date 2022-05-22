@@ -6,7 +6,7 @@ tech: PyTorch, ML, Network
 type: Research
 ---
 
-[Github link] (https://github.com/with1015/CaPS-Learn)
+[Github link](https://github.com/with1015/CaPS-Learn)
 
 CaPS-Learn: Convergence-aware Parameter Skipped Learning System in Distributed Environment
 
