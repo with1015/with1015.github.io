@@ -43,6 +43,16 @@ author:
 social:
   email: true
   github: with1015
+
+  markdown: kramdown
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+permalink: /:year-:month-:day/:title
+paginate_path: "/portfolio/page:num"
+paginate: 5
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
@@ -51,7 +61,7 @@ social:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+#exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
