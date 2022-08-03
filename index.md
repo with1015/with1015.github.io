@@ -17,6 +17,11 @@ I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 
 <br/>
 
+# Experience
+* Marine logistics start-up ULLU (2022/06 ~ )
+
+<br/>
+
 # Research field
 * Distributed machine learning
 * Resource management in distributed environment
