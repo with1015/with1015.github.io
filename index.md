@@ -18,6 +18,7 @@ I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 <br/>
 
 # Experience
+* UNIST LikeLion (2020/03 ~ 2021/11)
 * UNIST A.I challenge program (AICP) (2021/03 ~ 2021/11)
 * Marine logistics start-up ULLU (2022/06 ~ )
 
