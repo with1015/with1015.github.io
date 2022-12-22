@@ -14,6 +14,7 @@ I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 * M.S in UNIST (2021/03 ~ 2023/02)
   * Computer Science & Engineering
   * System Software Lab (SSL)
+  * Advisor: Prof. Youngri Choi
 
 <br/>
 
