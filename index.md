@@ -11,7 +11,7 @@ I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 * B.S in UNIST (2015/03 ~ 2021/02)
   * 1st Track Computer Science & Engineering
   * 2nd Track Electrical & Electronic Engineering
-* M.S in UNIST (2021/03 ~ )
+* M.S in UNIST (2021/03 ~ 2023/02)
   * Computer Science & Engineering
   * System Software Lab (SSL)
 
