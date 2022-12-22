@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DoubleStep
-info: ML system
+info: ML system, Master degree thesis
 tech: PyTorch, ML, Network
 type: Research
 ---
