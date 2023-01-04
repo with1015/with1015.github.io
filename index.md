@@ -3,7 +3,7 @@ layout: about
 ---
 
 # About Me
-I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
+System software, MLOps developer Hyunjoon Jeong.
 
 <br/>
 
@@ -18,8 +18,14 @@ I'm M.S course student in Prof. Young-ri Choi in UNIST System Software Lab.
 
 <br/>
 
+# Company
+* LG Uplus MLOps team (2023/01 ~ )
+
+<br/>
+
 # Experience
 * UNIST LikeLion (2020/03 ~ 2021/11)
+* UNIST Winter CS mentoring mentor (2021/01 ~ 2021/02, 2022/01 ~ 2022/02)
 * UNIST A.I challenge program (AICP) (2021/03 ~ 2021/11)
 * Marine logistics start-up ULLU (2022/06 ~ 2022/09)
 
