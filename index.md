@@ -19,7 +19,8 @@ System software, MLOps developer Hyunjoon Jeong.
 <br/>
 
 # Company
-* LG Uplus MLOps team (2023/01 ~ )
+* LG Uplus MLOps team (2023/01/02 ~ 2023/12/31)
+* LG Uplus AIX team (2024/01/01 ~ )
 
 <br/>
 
@@ -32,6 +33,7 @@ System software, MLOps developer Hyunjoon Jeong.
 <br/>
 
 # Research field
+* AI agent with LLM reasoning
 * Distributed machine learning
 * Resource management in distributed environment
 * Cloud computing
