@@ -24,6 +24,11 @@ System software, MLOps developer Hyunjoon Jeong.
 
 <br/>
 
+# Publications
+* Gyeongchan Yun, Junesoo Kang, <ins>Hyunjoon Jeong</ins>, Sanghyeon Eom, Minsung Jang and Young-ri Choi, <strong>JABAS: Joint Adaptive Batching and Automatic Scaling for DNN Training on Heterogeneous GPUs</strong>, To appear in Proceedings of the 20th European Conference on Computer Systems (EuroSys'25), 2025
+
+<br/>
+
 # Experience
 * UNIST LikeLion (2020/03 ~ 2021/11)
 * UNIST Winter CS mentoring mentor (2021/01 ~ 2021/02, 2022/01 ~ 2022/02)
