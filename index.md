@@ -19,7 +19,7 @@ System software, MLOps developer Hyunjoon Jeong.
 <br/>
 
 # Company
-* NAVER Cloud (2025/09/29 ~ )
+* NAVER Cloud AICS Model Acceleration team (2025/09/29 ~ )
 * LG Uplus AIX team (2024/01/01 ~ 2025/09/26)
 * LG Uplus MLOps team (2023/01/02 ~ 2023/12/31)
 
