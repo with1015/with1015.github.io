@@ -43,6 +43,7 @@ author:
 social:
   email: true
   github: with1015
+  tumblr: https://with1015.github.io/
 
   markdown: kramdown
 
@@ -72,3 +73,4 @@ paginate: 5
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
