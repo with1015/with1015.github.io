@@ -26,6 +26,7 @@ System software, MLOps developer Hyunjoon Jeong.
 <br/>
 
 # Publications
+* <ins>NAVER Cloud HyperCLOVA X Team</ins>, <strong>HyperCLOVA X 8B Omni Technical Report</strong>, arXiv, 2026
 * Gyeongchan Yun, Junesoo Kang, <ins>Hyunjoon Jeong</ins>, Sanghyeon Eom, Minsung Jang and Young-ri Choi, <strong>JABAS: Joint Adaptive Batching and Automatic Scaling for DNN Training on Heterogeneous GPUs</strong>, To appear in Proceedings of the 20th European Conference on Computer Systems (EuroSys'25), 2025
 
 <br/>
