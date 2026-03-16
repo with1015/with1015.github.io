@@ -26,7 +26,8 @@ System software, MLOps developer Hyunjoon Jeong.
 <br/>
 
 # Publications
-* Sunghyeon Woo, Hoseung Kim, Sunghwan Shim, Minjung Jo, <ins>Hyunjoon Jeong</ins>, Jeongtae Lee, Joonghoon Kim, Sungjae Lee, Baeseong Park, Se Jung Kwon, Dongsoo Lee, <strong>PrefillShare: A Shared Prefill Module for KV Reuse in Multi-LLM Disaggregated Serving</strong>, axXiv, 2025
+* Jeongtae Lee, Minjung Jo, <ins>Hyunjoon Jeong</ins>, Gunho Park, Sunghyeon Woo, Joonghoon Kim, Se Jung Kwon, Dongsoo Lee, <strong>Training-free Dropout Sampling for Semantic Token Acceptance in Speculative Decoding</strong>, arXiv, 2026
+* Sunghyeon Woo, Hoseung Kim, Sunghwan Shim, Minjung Jo, <ins>Hyunjoon Jeong</ins>, Jeongtae Lee, Joonghoon Kim, Sungjae Lee, Baeseong Park, Se Jung Kwon, Dongsoo Lee, <strong>PrefillShare: A Shared Prefill Module for KV Reuse in Multi-LLM Disaggregated Serving</strong>, axXiv, 2026
 * <ins>NAVER Cloud HyperCLOVA X Team</ins>, <strong>HyperCLOVA X 8B Omni Technical Report</strong>, arXiv, 2026
 * Gyeongchan Yun, Junesoo Kang, <ins>Hyunjoon Jeong</ins>, Sanghyeon Eom, Minsung Jang and Young-ri Choi, <strong>JABAS: Joint Adaptive Batching and Automatic Scaling for DNN Training on Heterogeneous GPUs</strong>, To appear in Proceedings of the 20th European Conference on Computer Systems (EuroSys'25), 2025
 
