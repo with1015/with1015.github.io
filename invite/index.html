@@ -1,0 +1,264 @@
+---
+layout: null
+permalink: /invite/
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>정현준 ♥ 이수진 결혼합니다</title>
+  <meta name="description" content="정현준 · 이수진의 결혼식에 초대합니다.">
+  <meta property="og:title" content="정현준 ♥ 이수진 결혼합니다">
+  <meta property="og:description" content="2027년 5월 15일 토요일 오후 1시">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap">
+  <style>
+    :root {
+      --bg: #f6f2ec;
+      --paper: #fffdf9;
+      --ink: #3d3833;
+      --muted: #8a8279;
+      --accent: #b9826b;
+      --line: #e6ded3;
+      --sat: #6b86b9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Gowun Batang", serif;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      background: var(--paper);
+      min-height: 100vh;
+      box-shadow: 0 0 24px rgba(0,0,0,.05);
+    }
+    section { padding: 64px 28px; text-align: center; border-bottom: 1px solid var(--line); }
+    .eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      letter-spacing: .2em;
+      color: var(--accent);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    h2 { font-size: 19px; font-weight: 700; margin-bottom: 28px; }
+    p { font-size: 15px; }
+    .muted { color: var(--muted); }
+
+    /* Cover */
+    .cover { padding: 0 0 48px; }
+    .cover-photo {
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(160deg, #e9dfd3, #d7c6b4);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.9);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px; letter-spacing: .3em;
+    }
+    .cover-names { font-size: 26px; margin-top: 36px; letter-spacing: .1em; }
+    .cover-names .amp { color: var(--accent); margin: 0 12px; font-size: 20px; }
+    .cover-date { margin-top: 12px; color: var(--muted); font-size: 15px; }
+
+    /* Greeting */
+    .greeting p { line-height: 2.2; }
+    .family { margin-top: 40px; font-size: 15px; line-height: 2.2; }
+    .family b { font-size: 17px; margin-left: 6px; }
+
+    /* Calendar */
+    .when { font-size: 17px; margin-bottom: 28px; }
+    .cal { max-width: 300px; margin: 0 auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 8px; font-size: 14px; }
+    .cal-grid .h { color: var(--muted); font-size: 12px; }
+    .cal-grid .sun { color: var(--accent); }
+    .cal-grid .sat { color: var(--sat); }
+    .cal-grid .day.on {
+      background: var(--accent); color: #fff; border-radius: 50%;
+      width: 32px; height: 32px; line-height: 32px; margin: -4px auto;
+    }
+    .dday { margin-top: 28px; font-size: 15px; }
+    .dday b { color: var(--accent); }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .gallery div { aspect-ratio: 1; background: #ece4da; border-radius: 4px; }
+    .gallery div:nth-child(3n+2) { background: #e4d9cc; }
+
+    /* Location */
+    .venue { font-size: 17px; font-weight: 700; }
+    .map {
+      margin: 24px 0 16px; aspect-ratio: 4 / 3; background: #ece4da; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px;
+    }
+    .btns { display: flex; gap: 8px; }
+    .btn {
+      flex: 1; display: block; padding: 11px 0; border: 1px solid var(--line); border-radius: 8px;
+      background: #fff; color: var(--ink); font: inherit; font-size: 14px; text-decoration: none; cursor: pointer;
+    }
+    .transport { text-align: left; margin-top: 32px; font-size: 14px; }
+    .transport dt { font-weight: 700; margin-top: 16px; }
+    .transport dd { color: var(--muted); }
+
+    /* Accounts */
+    details { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 12px; text-align: left; overflow: hidden; }
+    summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; display: flex; justify-content: space-between; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "＋"; color: var(--muted); }
+    details[open] summary::after { content: "－"; }
+    .acct { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); font-size: 14px; }
+    .acct .btn { flex: none; width: auto; padding: 6px 12px; font-size: 13px; }
+
+    footer { padding: 48px 28px 64px; text-align: center; font-size: 13px; color: var(--muted); }
+    .toast {
+      position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%);
+      background: rgba(61,56,51,.9); color: #fff; padding: 10px 18px; border-radius: 20px;
+      font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- 커버 -->
+    <section class="cover">
+      <div class="cover-photo">MAIN PHOTO</div>
+      <div class="cover-names">정현준<span class="amp">&amp;</span>이수진</div>
+      <div class="cover-date">2027. 05. 15. SAT PM 1:00<br>○○웨딩홀 ○층 ○○홀</div>
+    </section>
+
+    <!-- 인사말 -->
+    <section class="greeting">
+      <div class="eyebrow">INVITATION</div>
+      <h2>소중한 분들을 초대합니다</h2>
+      <p>
+        서로 다른 길을 걸어온 두 사람이<br>
+        이제 같은 길을 함께 걸어가려 합니다.<br><br>
+        저희의 새로운 시작을<br>
+        따뜻한 마음으로 축복해 주시면<br>
+        더없는 기쁨으로 간직하겠습니다.
+      </p>
+      <div class="family">
+        ○○○ · ○○○ <span class="muted">의 아들</span><b>정현준</b><br>
+        ○○○ · ○○○ <span class="muted">의 딸</span><b>이수진</b>
+      </div>
+    </section>
+
+    <!-- 날짜 -->
+    <section>
+      <div class="eyebrow">WEDDING DAY</div>
+      <div class="when">2027년 5월 15일 토요일 오후 1시</div>
+      <div class="cal"><div class="cal-grid" id="cal"></div></div>
+      <p class="dday" id="dday"></p>
+    </section>
+
+    <!-- 갤러리 -->
+    <section>
+      <div class="eyebrow">GALLERY</div>
+      <div class="gallery">
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+      </div>
+    </section>
+
+    <!-- 오시는 길 -->
+    <section>
+      <div class="eyebrow">LOCATION</div>
+      <div class="venue">○○웨딩홀 ○층 ○○홀</div>
+      <p class="muted">서울시 ○○구 ○○로 000</p>
+      <div class="map">지도 영역</div>
+      <div class="btns">
+        <a class="btn" href="#">네이버 지도</a>
+        <a class="btn" href="#">카카오맵</a>
+        <a class="btn" href="#">티맵</a>
+      </div>
+      <dl class="transport">
+        <dt>지하철</dt><dd>○호선 ○○역 ○번 출구 도보 5분</dd>
+        <dt>버스</dt><dd>○○○, ○○○번 ○○정류장 하차</dd>
+        <dt>주차</dt><dd>건물 내 지하주차장 2시간 무료</dd>
+      </dl>
+    </section>
+
+    <!-- 마음 전하실 곳 -->
+    <section>
+      <div class="eyebrow">ACCOUNT</div>
+      <h2>마음 전하실 곳</h2>
+      <details>
+        <summary>신랑측 계좌번호</summary>
+        <div class="acct"><span>○○은행 000-0000-0000<br><span class="muted">정현준</span></span><button class="btn" data-copy="000-0000-0000">복사</button></div>
+      </details>
+      <details>
+        <summary>신부측 계좌번호</summary>
+        <div class="acct"><span>○○은행 000-0000-0000<br><span class="muted">이수진</span></span><button class="btn" data-copy="000-0000-0000">복사</button></div>
+      </details>
+    </section>
+
+    <footer>
+      <div class="btns" style="margin-bottom:24px">
+        <button class="btn" id="share">링크 복사하기</button>
+      </div>
+      정현준 &amp; 이수진
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 결혼식 날짜 (여기만 바꾸면 달력/D-day가 함께 바뀝니다)
+    var WEDDING = new Date(2027, 4, 15, 13, 0); // 월은 0부터 시작 (4 = 5월)
+
+    (function renderCalendar() {
+      var cal = document.getElementById('cal');
+      var heads = ['일', '월', '화', '수', '목', '금', '토'];
+      var html = heads.map(function (h, i) {
+        return '<div class="h' + (i === 0 ? ' sun' : i === 6 ? ' sat' : '') + '">' + h + '</div>';
+      }).join('');
+      var y = WEDDING.getFullYear(), m = WEDDING.getMonth();
+      var first = new Date(y, m, 1).getDay();
+      var last = new Date(y, m + 1, 0).getDate();
+      for (var i = 0; i < first; i++) html += '<div></div>';
+      for (var d = 1; d <= last; d++) {
+        var dow = (first + d - 1) % 7;
+        var cls = 'day' + (dow === 0 ? ' sun' : dow === 6 ? ' sat' : '') + (d === WEDDING.getDate() ? ' on' : '');
+        html += '<div class="' + cls + '">' + d + '</div>';
+      }
+      cal.innerHTML = html;
+    })();
+
+    (function renderDday() {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var day = new Date(WEDDING); day.setHours(0, 0, 0, 0);
+      var diff = Math.round((day - today) / 86400000);
+      var el = document.getElementById('dday');
+      if (diff > 0) el.innerHTML = '현준 ♥ 수진의 결혼식이 <b>' + diff + '일</b> 남았습니다';
+      else if (diff === 0) el.innerHTML = '오늘은 현준 ♥ 수진의 <b>결혼식 날</b>입니다';
+      else el.innerHTML = '현준 ♥ 수진이 함께한 지 <b>' + (-diff) + '일</b>째입니다';
+    })();
+
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('show'); }, 1600);
+    }
+    function copy(text, msg) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () { toast(msg); }, function () { toast('복사에 실패했습니다'); });
+      } else { toast('복사에 실패했습니다'); }
+    }
+    document.querySelectorAll('[data-copy]').forEach(function (b) {
+      b.addEventListener('click', function () { copy(b.dataset.copy, '계좌번호가 복사되었습니다'); });
+    });
+    document.getElementById('share').addEventListener('click', function () {
+      copy(location.href, '링크가 복사되었습니다');
+    });
+  </script>
+</body>
+</html>
