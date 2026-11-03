@@ -3,3 +3,8 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# 청첩장: 원본 사진은 올리지 않음 (_tools/encrypt-invite-images.js로 만든 .enc만 커밋)
+/assets/invite/*.jpg
+/assets/invite/*.jpeg
+/assets/invite/*.png

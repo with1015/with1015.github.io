@@ -10,22 +10,23 @@ permalink: /invite/
   <title>정현준 ♥ 이수진 결혼합니다</title>
   <meta name="description" content="정현준 · 이수진의 결혼식에 초대합니다.">
   <meta property="og:title" content="정현준 ♥ 이수진 결혼합니다">
-  <meta property="og:description" content="2027년 4월 11일 일요일 오후 1시 · 상록아트홀 그랜드볼룸홀">
-  <meta name="theme-color" content="#fdf0f2">
+  <meta property="og:description" content="2027년 4월 11일 일요일 낮 12시 · 상록아트홀 그랜드볼룸홀">
+  <meta name="theme-color" content="#eef3e8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap">
   <style>
     :root {
-      --bg: #fbeef0;
-      --paper: #fffafa;
-      --ink: #4a3d41;
-      --muted: #9c8a8f;
-      --accent: #d9849b;      /* 벚꽃 분홍 */
-      --accent-soft: #fbe3e9;
-      --leaf: #93b47f;        /* 새싹 연두 */
-      --leaf-soft: #eef5e6;
-      --line: #f2dfe3;
+      --bg: #edf1e8;
+      --paper: #fbfcf8;
+      --ink: #36423a;
+      --muted: #848f80;
+      --accent: #6e8b67;      /* 세이지 그린 */
+      --accent-soft: #e5ecdf;
+      --leaf: #9db58f;        /* 유칼립투스 */
+      --leaf-soft: #eef3e8;
+      --line: #dde5d5;
+      --sun: #c4877f;         /* 달력 일요일 */
       --sat: #7f9cc4;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,7 +43,7 @@ permalink: /invite/
       margin: 0 auto;
       background: var(--paper);
       min-height: 100vh;
-      box-shadow: 0 0 30px rgba(217,132,155,.12);
+      box-shadow: 0 0 30px rgba(110,139,103,.14);
       overflow: hidden;
     }
     section { padding: 64px 28px; text-align: center; position: relative; }
@@ -53,12 +54,12 @@ permalink: /invite/
     }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1); }
     .reveal.in { opacity: 1; transform: none; }
-    /* 섹션 사이 꽃 구분선 */
+    /* 섹션 사이 잎사귀 구분선 */
     section + section::before {
       content: ""; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
       width: 120px; height: 14px;
       background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E%3Cg fill='%23ecaabb'%3E%3Cellipse cx='0' cy='-5' rx='3.2' ry='5'/%3E%3Cellipse cx='0' cy='-5' rx='3.2' ry='5' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-5' rx='3.2' ry='5' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-5' rx='3.2' ry='5' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-5' rx='3.2' ry='5' transform='rotate(288)'/%3E%3C/g%3E%3Ccircle r='1.8' fill='%23f6d48f'/%3E%3C/svg%3E") center / 14px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E%3Cg fill='%2399b28c'%3E%3Cpath d='M0 5 Q-9 0 -8 -8 Q-1 -6 0 5Z'/%3E%3Cpath d='M0 5 Q9 0 8 -8 Q1 -6 0 5Z'/%3E%3C/g%3E%3Cpath d='M0 3 V9' stroke='%2399b28c' stroke-width='1.2'/%3E%3C/svg%3E") center / 14px no-repeat,
         linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 38%, transparent 38%, transparent 62%, var(--line) 62%, var(--line) 80%, transparent) center / 100% 1px no-repeat;
     }
     .eyebrow {
@@ -80,21 +81,21 @@ permalink: /invite/
       aspect-ratio: 3 / 4;
       background:
         radial-gradient(circle at 75% 20%, rgba(255,255,255,.7), transparent 40%),
-        linear-gradient(165deg, #fde6ec 0%, #f7cfda 55%, #e7f0dc 100%);
+        linear-gradient(165deg, #f1f5ec 0%, #d8e4cf 55%, #bccdb1 100%);
       display: flex; align-items: center; justify-content: center;
       color: rgba(255,255,255,.95);
       font-family: "Cormorant Garamond", serif;
       font-size: 14px; letter-spacing: .3em;
     }
-    .branch { position: absolute; pointer-events: none; }
+    .branch { position: absolute; pointer-events: none; overflow: visible; }
     .branch.tl { top: -6px; left: -10px; width: 190px; }
-    .branch.br { bottom: -8px; right: -12px; width: 170px; transform: rotate(180deg); }
+    .branch.br { bottom: 10px; right: -12px; width: 170px; transform: rotate(180deg); }
     .cover-names { font-size: 26px; margin-top: 36px; letter-spacing: .1em; }
     .cover-names .amp { color: var(--accent); margin: 0 12px; font-size: 20px; }
     .cover-date { margin-top: 12px; color: var(--muted); font-size: 15px; }
     .season {
       display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 20px;
-      background: var(--leaf-soft); color: #6f8f5c; font-size: 12px; letter-spacing: .1em;
+      background: var(--accent-soft); color: #5a7654; font-size: 12px; letter-spacing: .1em;
     }
 
     /* Greeting */
@@ -111,21 +112,24 @@ permalink: /invite/
     .cal-month { font-family: "Cormorant Garamond", serif; font-size: 22px; color: var(--accent); margin-bottom: 8px; }
     .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 8px; font-size: 14px; }
     .cal-grid .h { color: var(--muted); font-size: 12px; }
-    .cal-grid .sun { color: var(--accent); }
+    .cal-grid .sun { color: var(--sun); }
     .cal-grid .sat { color: var(--sat); }
     .cal-grid .day.on {
       background: var(--accent); color: #fff; border-radius: 50%;
       width: 32px; height: 32px; line-height: 32px; margin: -4px auto;
       box-shadow: 0 0 0 4px var(--accent-soft);
     }
-    .dday { margin-top: 28px; font-size: 15px; }
+    .dday { margin-top: 28px; font-size: 15px; line-height: 2; }
     .dday b { color: var(--accent); }
+    .dday .count { display: block; font-size: 20px; color: var(--accent); letter-spacing: .02em; }
+    .dday .count i { font-style: normal; display: inline-block; min-width: 1.25em; text-align: right; font-variant-numeric: tabular-nums; }
+    .dday .count i.days { min-width: 0; }
 
     /* Gallery */
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .gallery div { aspect-ratio: 1; background: #fbe6eb; border-radius: 6px; }
-    .gallery div:nth-child(3n+2) { background: #f5dbe2; }
-    .gallery div:nth-child(4n) { background: var(--leaf-soft); }
+    .gallery div { aspect-ratio: 1; background: #e8eee2; border-radius: 6px; }
+    .gallery div:nth-child(3n+2) { background: #dee7d6; }
+    .gallery div:nth-child(4n) { background: #f2f5ee; }
 
     /* Location */
     .venue { font-size: 17px; font-weight: 700; }
@@ -141,7 +145,7 @@ permalink: /invite/
     .btn:active { background: var(--accent-soft); }
     .transport { text-align: left; margin-top: 32px; font-size: 14px; }
     .transport dt { font-weight: 700; margin-top: 16px; }
-    .transport dt::before { content: "✿ "; color: var(--accent); }
+    .transport dt::before { content: "❧ "; color: var(--accent); }
     .transport dd { color: var(--muted); }
 
     /* Accounts */
@@ -157,7 +161,7 @@ permalink: /invite/
     footer { padding: 48px 28px 64px; text-align: center; font-size: 13px; color: var(--muted); background: linear-gradient(180deg, var(--paper), var(--accent-soft)); }
     .toast {
       position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%);
-      background: rgba(74,61,65,.9); color: #fff; padding: 10px 18px; border-radius: 20px;
+      background: rgba(54,66,58,.9); color: #fff; padding: 10px 18px; border-radius: 20px;
       font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 11;
     }
     .toast.show { opacity: 1; }
@@ -165,68 +169,90 @@ permalink: /invite/
     /* 인트로 (획순 손글씨) */
     body.locked { overflow: hidden; }
     #intro {
-      position: fixed; inset: 0; z-index: 9;
-      background: radial-gradient(circle at 50% 40%, #fff 0%, #fdf0f3 60%, #f9e1e7 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: fixed; inset: 0; z-index: 9; background: #26302a;
+      display: flex; justify-content: center;
       transition: opacity .9s ease, visibility .9s ease; cursor: pointer;
     }
     #intro.hide { opacity: 0; visibility: hidden; }
-    #hand { width: min(80vw, 330px); aspect-ratio: 545 / 230; height: auto; overflow: visible; }
+    /* 사진 프레임: 휴대폰에서는 화면 전체, PC에서는 본문 폭(430px)에 맞춤 */
+    .intro-frame { position: relative; width: 100%; max-width: 430px; height: 100%; overflow: hidden; }
+    .intro-photo {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 35%;
+      transform: scale(1.08); transition: transform 7s cubic-bezier(.2,.6,.3,1), opacity .8s ease;
+      opacity: 0;
+    }
+    .intro-photo.loaded { opacity: 1; }
+    #intro.ready .intro-photo { transform: scale(1); }
+    /* 글씨가 잘 보이도록 위·아래만 살짝 어둡게 (얼굴 부분은 그대로) */
+    .intro-shade {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(18,28,20,.55) 0%, rgba(18,28,20,.22) 22%, rgba(0,0,0,0) 38%,
+        rgba(0,0,0,0) 62%, rgba(18,28,20,.25) 80%, rgba(18,28,20,.6) 100%);
+    }
+    #hand {
+      position: absolute; top: calc(env(safe-area-inset-top, 0px) + 4.5vh); left: 50%; transform: translateX(-50%);
+      width: min(76vw, 310px, 36vh); aspect-ratio: 545 / 230; height: auto; overflow: visible;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    }
     #hand path { fill: url(#ink); fill-opacity: 0; stroke: url(#ink); stroke-width: 1.2; stroke-linejoin: round; }
     .intro-sub {
-      margin-top: 22px; font-family: "Cormorant Garamond", serif; font-style: italic;
-      letter-spacing: .15em; color: var(--accent); font-size: 17px; text-align: center;
+      position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 11vh);
+      font-family: "Cormorant Garamond", serif; font-style: italic;
+      letter-spacing: .15em; color: #fff; font-size: 19px; text-align: center;
+      text-shadow: 0 1px 8px rgba(0,0,0,.4);
       opacity: 0; transition: opacity 1s ease;
     }
     .intro-sub.show { opacity: 1; }
-    .intro-sub small { display: block; font-size: 13px; letter-spacing: .25em; color: var(--muted); margin-top: 4px; }
-    .intro-skip { position: absolute; bottom: 32px; font-size: 12px; color: var(--muted); letter-spacing: .1em; }
+    .intro-sub small { display: block; font-size: 13px; letter-spacing: .25em; color: rgba(255,255,255,.85); margin-top: 4px; }
+    .intro-skip {
+      position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+      text-align: center; font-size: 12px; color: rgba(255,255,255,.7); letter-spacing: .1em;
+    }
 
     #petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
   </style>
 </head>
 <body class="locked">
   <div id="intro" aria-label="Happy Wedding Day, Hyunjoon and Sujin">
+    <div class="intro-frame">
+    <img class="intro-photo" id="intro-photo" alt="정현준과 이수진의 웨딩 사진" data-enc="{{ '/assets/invite/intro.enc' | relative_url }}">
+    <div class="intro-shade"></div>
     <svg id="hand" aria-hidden="true">
       <defs>
-        <!-- 왼쪽은 짙은 자두색, 오른쪽으로 갈수록 장미빛으로 번지는 잉크 -->
+        <!-- 사진 위에 쓰는 흰 잉크 (오른쪽으로 갈수록 아주 옅은 연두빛) -->
         <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="-87" x2="537" y2="143">
-          <stop offset="0" stop-color="#4f3440"/>
-          <stop offset="1" stop-color="#b1607a"/>
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset="1" stop-color="#eef5e4"/>
         </linearGradient>
       </defs>
     </svg>
     <div class="intro-sub" id="intro-sub">Hyunjoon &amp; Sujin<small>April 11, 2027</small></div>
     <div class="intro-skip">화면을 누르면 넘어갑니다</div>
+    </div>
   </div>
 
-  <!-- 벚꽃 가지 (커버 장식) -->
+  <!-- 유칼립투스 가지 (커버 장식) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <g id="blossom">
-        <g fill="#f6c3cf">
-          <ellipse cx="0" cy="-6" rx="4" ry="6.2"/>
-          <ellipse cx="0" cy="-6" rx="4" ry="6.2" transform="rotate(72)"/>
-          <ellipse cx="0" cy="-6" rx="4" ry="6.2" transform="rotate(144)"/>
-          <ellipse cx="0" cy="-6" rx="4" ry="6.2" transform="rotate(216)"/>
-          <ellipse cx="0" cy="-6" rx="4" ry="6.2" transform="rotate(288)"/>
-        </g>
-        <circle r="2.4" fill="#f3d38c"/>
-      </g>
       <g id="branch">
-        <path d="M0 10 C40 18 70 30 105 58 S150 95 175 100" fill="none" stroke="#8a6a5c" stroke-width="3" stroke-linecap="round"/>
-        <path d="M60 28 C66 12 80 6 92 2" fill="none" stroke="#8a6a5c" stroke-width="2" stroke-linecap="round"/>
-        <path d="M118 68 C128 56 140 52 152 50" fill="none" stroke="#8a6a5c" stroke-width="2" stroke-linecap="round"/>
-        <ellipse cx="84" cy="44" rx="7" ry="3" fill="#a9c78f" transform="rotate(35 84 44)"/>
-        <ellipse cx="140" cy="88" rx="7" ry="3" fill="#a9c78f" transform="rotate(20 140 88)"/>
-        <use href="#blossom" x="30" y="16"/>
-        <use href="#blossom" x="92" y="4" transform="scale(1)"/>
-        <use href="#blossom" x="74" y="32"/>
-        <use href="#blossom" x="112" y="62"/>
-        <use href="#blossom" x="152" y="50"/>
-        <use href="#blossom" x="166" y="96"/>
-        <circle cx="50" cy="22" r="3" fill="#f2a9ba"/>
-        <circle cx="132" cy="80" r="3" fill="#f2a9ba"/>
+        <path d="M0 8 C45 16 80 34 110 60 S155 96 182 104" fill="none" stroke="#7d8f73" stroke-width="2" stroke-linecap="round"/>
+        <path d="M55 22 C70 10 88 6 100 4" fill="none" stroke="#7d8f73" stroke-width="1.4" stroke-linecap="round"/>
+        <ellipse cx="100" cy="4" rx="8" ry="6.5" fill="#c4d4b8" transform="rotate(-15 100 4)"/>
+        <ellipse cx="80" cy="7" rx="7" ry="5.5" fill="#a9bf9c"/>
+        <ellipse cx="18" cy="1" rx="9.5" ry="7.5" fill="#a9bf9c" transform="rotate(-20 18 1)"/>
+        <ellipse cx="34" cy="25" rx="9.5" ry="7.5" fill="#8fa886" transform="rotate(30 34 25)"/>
+        <ellipse cx="54" cy="10" rx="9.5" ry="7.5" fill="#c4d4b8" transform="rotate(-10 54 10)"/>
+        <ellipse cx="70" cy="44" rx="9.5" ry="7.5" fill="#a9bf9c" transform="rotate(40 70 44)"/>
+        <ellipse cx="94" cy="30" rx="9.5" ry="7.5" fill="#8fa886" transform="rotate(-25 94 30)"/>
+        <ellipse cx="104" cy="73" rx="9.5" ry="7.5" fill="#c4d4b8" transform="rotate(35 104 73)"/>
+        <ellipse cx="130" cy="60" rx="9.5" ry="7.5" fill="#a9bf9c" transform="rotate(-30 130 60)"/>
+        <ellipse cx="138" cy="98" rx="9.5" ry="7.5" fill="#8fa886" transform="rotate(20 138 98)"/>
+        <ellipse cx="163" cy="82" rx="9.5" ry="7.5" fill="#c4d4b8" transform="rotate(-15 163 82)"/>
+        <ellipse cx="180" cy="104" rx="9.5" ry="7.5" fill="#a9bf9c" transform="rotate(10 180 104)"/>
+        <ellipse cx="60" cy="30" rx="9.5" ry="7.5" fill="#b8cbab" transform="rotate(10 60 30)"/>
+        <ellipse cx="120" cy="68" rx="9.5" ry="7.5" fill="#b8cbab" transform="rotate(0 120 68)"/>
       </g>
     </defs>
   </svg>
@@ -241,7 +267,7 @@ permalink: /invite/
         <svg class="branch br" viewBox="0 0 185 110" aria-hidden="true"><use href="#branch"/></svg>
       </div>
       <div class="cover-names">정현준<span class="amp">&amp;</span>이수진</div>
-      <div class="cover-date">2027. 04. 11. SUN PM 1:00<br>상록아트홀 그랜드볼룸홀</div>
+      <div class="cover-date">2027. 04. 11. SUN 12:00 PM<br>상록아트홀 그랜드볼룸홀</div>
       <div class="season">SPRING WEDDING</div>
     </section>
 
@@ -250,7 +276,7 @@ permalink: /invite/
       <div class="eyebrow">INVITATION</div>
       <h2>소중한 분들을 초대합니다</h2>
       <p>
-        벚꽃이 흩날리는 봄날,<br>
+        푸른 새잎이 돋아나는 봄날,<br>
         서로 다른 길을 걸어온 두 사람이<br>
         이제 같은 길을 함께 걸어가려 합니다.<br><br>
         저희의 새로운 시작을<br>
@@ -266,7 +292,7 @@ permalink: /invite/
     <!-- 날짜 -->
     <section>
       <div class="eyebrow">WEDDING DAY</div>
-      <div class="when">2027년 4월 11일 일요일 오후 1시</div>
+      <div class="when">2027년 4월 11일 일요일 낮 12시</div>
       <div class="cal">
         <div class="cal-month">April</div>
         <div class="cal-grid" id="cal"></div>
@@ -329,6 +355,49 @@ permalink: /invite/
 
   <script>
     // ─────────────────────────────────────────────
+    // 암호화된 사진 불러오기
+    //  - git에는 AES-256-GCM으로 암호화된 .enc 파일만 올라가 있음
+    //  - 키 = 이 페이지 주소("with1015.github.io/invite/")의 SHA-256
+    //    (?나 # 뒤에 붙는 값은 무시, 로컬 미리보기에서는 실제 주소로 간주)
+    //  - 사진을 만드는 쪽: _tools/encrypt-invite-images.js
+    // ─────────────────────────────────────────────
+    function inviteKeySource() {
+      var host = location.hostname;
+      var path = location.pathname.replace(/index\.html$/, '');
+      if (!/\/$/.test(path)) path += '/';
+      if (host === 'localhost' || host === '127.0.0.1') host = 'with1015.github.io';
+      return host + path;
+    }
+    var inviteKeyPromise = null;
+    function importInviteKey() {
+      if (!inviteKeyPromise) {
+        inviteKeyPromise = (window.crypto && crypto.subtle)
+          ? crypto.subtle.digest('SHA-256', new TextEncoder().encode(inviteKeySource())).then(function (raw) {
+              return crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']);
+            })
+          : Promise.reject(new Error('Web Crypto unavailable'));
+      }
+      return inviteKeyPromise;
+    }
+    function loadEncryptedImage(img) {
+      return importInviteKey().then(function (key) {
+        return fetch(img.dataset.enc).then(function (r) {
+          if (!r.ok) throw new Error('fetch ' + r.status);
+          return r.arrayBuffer();
+        }).then(function (buf) {
+          var data = new Uint8Array(buf);
+          return crypto.subtle.decrypt({ name: 'AES-GCM', iv: data.slice(0, 12) }, key, data.slice(12));
+        });
+      }).then(function (plain) {
+        return new Promise(function (resolve, reject) {
+          img.onload = function () { img.classList.add('loaded'); resolve(); };
+          img.onerror = reject;
+          img.src = URL.createObjectURL(new Blob([plain], { type: 'image/jpeg' }));
+        });
+      });
+    }
+
+    // ─────────────────────────────────────────────
     // 인트로: "Happy / Wedding Day"를 필기체(Great Vibes)로 한 글자씩 써 내려가기
     //  - 글꼴의 글자 윤곽을 미리 SVG 경로로 변환해 두었음 (글꼴 파일 로딩 없음)
     //  - 글자마다 펜으로 윤곽을 그은 뒤 잉크가 채워짐, 왼쪽에서 오른쪽 순서
@@ -370,21 +439,30 @@ permalink: /invite/
       }
       el.addEventListener('click', close);
 
-      if (reduce) {
-        sub.classList.add('show');
-        timers.push(setTimeout(close, 1800));
-        return;
+      function play() {
+        el.classList.add('ready');
+        if (reduce) {
+          sub.classList.add('show');
+          timers.push(setTimeout(close, 2500));
+          return;
+        }
+        svg.getBoundingClientRect();
+        glyphs.forEach(function (g) {
+          g.el.style.transition =
+            'stroke-dashoffset ' + GLYPH_DRAW + 's cubic-bezier(.3,.1,.4,1) ' + g.delay + 's, ' +
+            'fill-opacity .45s ease ' + (g.delay + GLYPH_DRAW * 0.55) + 's';
+          g.el.style.strokeDashoffset = 0;
+          g.el.style.fillOpacity = 1;
+        });
+        timers.push(setTimeout(function () { sub.classList.add('show'); }, writeEnd * 1000));
+        timers.push(setTimeout(close, (writeEnd + 2.5) * 1000));
       }
-      svg.getBoundingClientRect();
-      glyphs.forEach(function (g) {
-        g.el.style.transition =
-          'stroke-dashoffset ' + GLYPH_DRAW + 's cubic-bezier(.3,.1,.4,1) ' + g.delay + 's, ' +
-          'fill-opacity .45s ease ' + (g.delay + GLYPH_DRAW * 0.55) + 's';
-        g.el.style.strokeDashoffset = 0;
-        g.el.style.fillOpacity = 1;
-      });
-      timers.push(setTimeout(function () { sub.classList.add('show'); }, writeEnd * 1000));
-      timers.push(setTimeout(close, (writeEnd + 2) * 1000));
+      // 사진을 복호화해서 띄운 다음 글씨를 쓰기 시작 (느리면 최대 3초만 기다림)
+      var photo = document.getElementById('intro-photo');
+      var started = false;
+      function start() { if (!started) { started = true; play(); } }
+      setTimeout(start, 3000);
+      loadEncryptedImage(photo).then(start, start);
     })();
 
     // 스크롤할 때마다 장면이 차례로 나타나게 (인트로가 끝난 뒤 시작)
@@ -410,8 +488,10 @@ permalink: /invite/
       });
     })();
 
-    // 결혼식 날짜 (여기만 바꾸면 달력/D-day가 함께 바뀝니다)
-    var WEDDING = new Date(2027, 3, 11, 13, 0); // 월은 0부터 시작 (3 = 4월)
+    // 결혼식 날짜 (여기만 바꾸면 달력/카운트다운이 함께 바뀝니다)
+    var WEDDING = new Date(2027, 3, 11, 12, 0); // 월은 0부터 시작 (3 = 4월)
+    // 카운트다운 기준 시각: 한국 시간 2027-04-11 12:00 (보는 사람이 해외에 있어도 정확하도록 KST로 고정)
+    var WEDDING_AT = Date.parse('2027-04-11T12:00:00+09:00');
 
     (function renderCalendar() {
       var cal = document.getElementById('cal');
@@ -431,14 +511,28 @@ permalink: /invite/
       cal.innerHTML = html;
     })();
 
-    (function renderDday() {
-      var today = new Date(); today.setHours(0, 0, 0, 0);
-      var day = new Date(WEDDING); day.setHours(0, 0, 0, 0);
-      var diff = Math.round((day - today) / 86400000);
+    // 결혼식까지 남은 시간을 일·시간·분·초로 1초마다 갱신
+    (function countdown() {
       var el = document.getElementById('dday');
-      if (diff > 0) el.innerHTML = '현준 ♥ 수진의 결혼식이 <b>' + diff + '일</b> 남았습니다';
-      else if (diff === 0) el.innerHTML = '오늘은 현준 ♥ 수진의 <b>결혼식 날</b>입니다';
-      else el.innerHTML = '현준 ♥ 수진이 함께한 지 <b>' + (-diff) + '일</b>째입니다';
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function tick() {
+        var ms = WEDDING_AT - Date.now();
+        if (ms > 0) {
+          var sec = Math.floor(ms / 1000);
+          var d = Math.floor(sec / 86400), h = Math.floor(sec % 86400 / 3600),
+              m = Math.floor(sec % 3600 / 60), s = sec % 60;
+          el.innerHTML = '현준 ♥ 수진의 결혼식까지' +
+            '<span class="count"><i class="days">' + d + '</i>일 <i>' + pad(h) + '</i>시간 <i>' + pad(m) + '</i>분 <i>' + pad(s) + '</i>초</span>' +
+            '남았습니다';
+          setTimeout(tick, 1000 - (Date.now() % 1000));
+        } else {
+          var days = Math.floor(-ms / 86400000);
+          el.innerHTML = days === 0
+            ? '오늘은 현준 ♥ 수진의 <b>결혼식 날</b>입니다'
+            : '현준 ♥ 수진이 함께한 지 <b>' + (days + 1) + '일</b>째입니다';
+        }
+      }
+      tick();
     })();
 
     function toast(msg) {
@@ -458,14 +552,14 @@ permalink: /invite/
       copy(location.href, '링크가 복사되었습니다');
     });
 
-    // 벚꽃잎 흩날림 효과 (동작 줄이기 설정을 켠 사용자에게는 표시하지 않음)
+    // 잎사귀 흩날림 효과 (동작 줄이기 설정을 켠 사용자에게는 표시하지 않음)
     (function petals() {
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var canvas = document.getElementById('petals');
       var ctx = canvas.getContext('2d');
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       var W, H, list = [];
-      var COLORS = ['#f7c6d0', '#f4b6c2', '#fbd9e0', '#f9cfd8'];
+      var COLORS = ['#a9c49a', '#8fb08a', '#c3d6b2', '#b7cfa5'];
 
       function resize() {
         W = window.innerWidth; H = window.innerHeight;
@@ -488,7 +582,7 @@ permalink: /invite/
           alpha: 0.6 + Math.random() * 0.35
         };
       }
-      // 끝이 살짝 갈라진 벚꽃잎 모양
+      // 가운데 잎맥이 있는 작은 잎사귀 모양
       function drawPetal(p) {
         var s = p.size;
         ctx.save();
@@ -498,12 +592,16 @@ permalink: /invite/
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.moveTo(0, s);
-        ctx.bezierCurveTo(-s * 0.9, s * 0.3, -s * 0.6, -s * 0.8, -s * 0.15, -s);
-        ctx.lineTo(0, -s * 0.75);
-        ctx.lineTo(s * 0.15, -s);
-        ctx.bezierCurveTo(s * 0.6, -s * 0.8, s * 0.9, s * 0.3, 0, s);
+        ctx.moveTo(0, -s);
+        ctx.quadraticCurveTo(s * 0.8, 0, 0, s);
+        ctx.quadraticCurveTo(-s * 0.8, 0, 0, -s);
         ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,.5)';
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(0, -s * 0.75);
+        ctx.lineTo(0, s * 0.85);
+        ctx.stroke();
         ctx.restore();
       }
       function tick() {
