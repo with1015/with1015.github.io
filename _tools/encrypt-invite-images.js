@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // 청첩장 사진 암호화 스크립트
 //
-//   node _tools/encrypt-invite-images.js
+//   node _tools/encrypt-invite-images.js              # assets/invite/의 모든 사진
+//   node _tools/encrypt-invite-images.js main.jpg     # 지정한 사진만
 //
 // - assets/invite/ 안의 원본 사진(.jpg/.jpeg/.png)을 웹용 크기(긴 변 1800px)로 줄인 뒤
 //   AES-256-GCM으로 암호화해 같은 폴더에 <이름>.enc 로 저장합니다.
@@ -34,7 +35,10 @@ function resizeToTemp(src) {
   return out;
 }
 
-const files = fs.readdirSync(DIR).filter(f => /\.(jpe?g|png)$/i.test(f));
+const only = process.argv.slice(2).map(f => path.basename(f));
+const files = fs.readdirSync(DIR)
+  .filter(f => /\.(jpe?g|png)$/i.test(f))
+  .filter(f => !only.length || only.includes(f));
 if (!files.length) console.log('assets/invite/ 에 암호화할 사진이 없습니다.');
 
 for (const f of files) {
