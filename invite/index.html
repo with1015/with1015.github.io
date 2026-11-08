@@ -20,6 +20,9 @@ permalink: /invite/
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
   <style>
     :root {
+      /* 한 화면 높이. 모바일 툴바가 접히거나 펴질 때 바뀌지 않도록
+         아래 스크립트가 처음 연 시점의 높이(px)로 고정함 */
+      --app-h: 100vh;
       --bg: #f2f4f1;
       --paper: #ffffff;       /* 깨끗한 흰 종이 */
       --ink: #2c332e;
@@ -59,7 +62,7 @@ permalink: /invite/
     section { padding: 72px 32px; text-align: center; position: relative; }
     /* 한 화면 = 한 장면 */
     section:not(.cover) {
-      min-height: 100vh; min-height: 100svh;
+      min-height: var(--app-h);
       display: flex; flex-direction: column; justify-content: center;
     }
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.7,.3,1); }
@@ -95,7 +98,7 @@ permalink: /invite/
     .cover { padding: 0; }
     .cover-photo {
       position: relative;
-      height: 100vh; height: 100svh; min-height: 560px;
+      height: var(--app-h); min-height: 560px;
       background:
         radial-gradient(circle at 70% 18%, rgba(255,255,255,.55), transparent 45%),
         linear-gradient(170deg, #f3f6f1 0%, #e0e8dc 60%, #cbd8c5 100%);
@@ -121,7 +124,7 @@ permalink: /invite/
     }
     .cover-text {
       position: absolute; left: 0; right: 0; z-index: 3;
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 7vh);
+      bottom: 8%;
       color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.35);
     }
     .cover-kicker { color: rgba(255,255,255,.85); }
@@ -148,8 +151,7 @@ permalink: /invite/
     .family b { font-size: 16px; font-weight: 500; margin-left: 8px; letter-spacing: .08em; }
 
     /* Calendar */
-    .when { font-size: 16px; letter-spacing: .04em; }
-    .when-en { margin-top: 6px; margin-bottom: 36px; }
+    .when { font-size: 16px; letter-spacing: .04em; margin-bottom: 36px; }
     .cal {
       max-width: 300px; margin: 0 auto; padding: 20px 6px 24px;
       border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -198,16 +200,8 @@ permalink: /invite/
     }
     .btn:active { border-color: var(--gold); color: var(--accent); }
     .transport { text-align: left; margin-top: 36px; font-size: 14px; }
-    .transport-title {
-      margin-top: 44px; padding-bottom: 12px; border-bottom: 1px solid var(--line);
-      text-align: left; font-size: 16px; font-weight: 500; letter-spacing: .04em;
-    }
-    .transport-title + .transport { margin-top: 0; }
-    .transport dt {
-      margin-top: 22px; font-family: var(--sans); font-weight: 600; font-size: 12px;
-      letter-spacing: .16em; text-transform: uppercase; color: var(--gold-text);
-    }
-    .transport dt span { font-family: var(--sans); letter-spacing: .05em; color: var(--ink); margin-left: 8px; font-size: 13px; font-weight: 500; }
+    .transport dt { margin-top: 22px; font-size: 14px; font-weight: 600; letter-spacing: .02em; color: var(--ink); }
+    .transport dt:first-child { margin-top: 0; }
     .transport dd { color: var(--muted); margin-top: 4px; line-height: 1.9; }
     .transport dd b { display: block; margin-top: 8px; font-weight: 500; font-size: 13px; color: var(--ink); }
     .transport dd b:first-child { margin-top: 0; }
@@ -289,6 +283,23 @@ permalink: /invite/
 
     #petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
   </style>
+  <script>
+    // 모바일(카카오톡 인앱 브라우저, 모바일 크롬 등)은 스크롤할 때 주소창/툴바가 접히며
+    // 화면 높이가 바뀜 → 커버 사진이 다시 맞춰져 확대되거나 문구가 움직이는 문제.
+    // 처음 연 시점의 높이를 px로 고정하고, 가로 폭이 바뀔 때(화면 회전)만 다시 계산.
+    (function () {
+      var root = document.documentElement, lastW = 0;
+      function setAppHeight() {
+        var w = window.innerWidth;
+        if (w === lastW) return;           // 높이만 바뀐 경우(툴바 접힘/펼침)는 무시
+        lastW = w;
+        root.style.setProperty('--app-h', window.innerHeight + 'px');
+      }
+      setAppHeight();
+      window.addEventListener('resize', setAppHeight);
+      window.addEventListener('orientationchange', function () { lastW = 0; setTimeout(setAppHeight, 300); });
+    })();
+  </script>
 </head>
 <body class="locked">
   <div id="intro" aria-label="Happy Wedding Day, Hyunjoon and Sujin">
@@ -346,7 +357,6 @@ permalink: /invite/
     <section>
       <div class="eyebrow">Wedding Day</div>
       <div class="when">2027년 4월 11일 일요일 낮 12시</div>
-      <div class="caps when-en">Sunday, April 11, 2027 · 12 PM</div>
       <div class="cal">
         <div class="cal-month">April</div>
         <div class="cal-grid" id="cal"></div>
@@ -377,14 +387,13 @@ permalink: /invite/
         <a class="btn" href="https://map.naver.com/p/search/%EC%83%81%EB%A1%9D%EC%95%84%ED%8A%B8%ED%99%80" target="_blank" rel="noopener">네이버 지도</a>
         <a class="btn" href="https://map.kakao.com/link/search/%EC%83%81%EB%A1%9D%EC%95%84%ED%8A%B8%ED%99%80" target="_blank" rel="noopener">카카오맵</a>
       </div>
-      <h3 class="transport-title">오시는 길</h3>
       <dl class="transport">
-        <dt>Subway &amp; Shuttle<span>지하철 및 셔틀버스</span></dt>
+        <dt>지하철 및 셔틀버스</dt>
         <dd>
           2호선, 수인분당선 ‘선릉역’ 5번 출구 도보 5분<br>
           셔틀버스: 선릉역 5번 출구에서 운행
         </dd>
-        <dt>Car<span>자차 이용</span></dt>
+        <dt>자차 이용</dt>
         <dd>
           상록아트홀 내부 주차장 또는 아남타워 외부 주차장 이용<br>
           하객 1시간 30분 무료 주차
