@@ -147,7 +147,9 @@ permalink: /invite/
 
     /* Greeting */
     .greeting p { line-height: 2.3; }
-    .family { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); font-size: 14px; line-height: 2.4; }
+    .family { margin-top: 48px; font-size: 14px; line-height: 2.4; }
+    /* 초대 문구와 부모님 성함 사이: 가운데 짧은 선 */
+    .family::before { content: ""; display: block; width: 48px; height: 1px; margin: 0 auto 32px; background: var(--line); }
     .family b { font-size: 16px; font-weight: 500; margin-left: 8px; letter-spacing: .08em; }
 
     /* Calendar */
