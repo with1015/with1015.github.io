@@ -5,7 +5,11 @@
 //   node _tools/encrypt-invite-images.js main.jpg     # 지정한 사진만
 //
 // - assets/invite/ 안의 원본 사진(.jpg/.jpeg/.png)을 웹용 크기(긴 변 1800px)로 줄인 뒤
-//   AES-256-GCM으로 암호화해 같은 폴더에 <이름>.enc 로 저장합니다.
+//   AES-256-GCM으로 암호화해 같은 폴더에 .enc 로 저장합니다.
+//     intro.jpg / main.jpg → intro.enc / main.enc
+//     그 밖의 사진         → 갤러리 사진. 파일 이름 순서대로 gallery-01.enc, gallery-02.enc …
+//   갤러리는 페이지가 gallery-*.enc 를 자동으로 찾아 번호 순서대로 보여 줍니다.
+//   (사진을 추가·삭제하거나 순서를 바꾸면 번호가 달라지므로 인자 없이 전체를 다시 실행하세요)
 // - 원본 사진은 .gitignore에 들어 있어 git에는 .enc 파일만 올라갑니다.
 // - 키는 청첩장 주소("with1015.github.io/invite/")의 SHA-256 값입니다.
 //   페이지도 자기 주소로 같은 키를 만들어 사진을 풉니다. (따로 보관할 키 파일 없음)
@@ -35,13 +39,38 @@ function resizeToTemp(src) {
   return out;
 }
 
-const only = process.argv.slice(2).map(f => path.basename(f));
-const files = fs.readdirSync(DIR)
-  .filter(f => /\.(jpe?g|png)$/i.test(f))
-  .filter(f => !only.length || only.includes(f));
-if (!files.length) console.log('assets/invite/ 에 암호화할 사진이 없습니다.');
+// intro / main 은 이름 그대로, 나머지 사진은 갤러리용으로 보고
+// 파일 이름 순서대로 gallery-01.enc, gallery-02.enc … 로 저장 (원본 파일 이름은 git에 남지 않음)
+const FIXED = ['intro', 'main'];
+const IMAGE_RE = /\.(jpe?g|png)$/i;
+let galleryCount = 0;
+const jobs = fs.readdirSync(DIR)
+  .filter(f => IMAGE_RE.test(f))
+  .sort()
+  .map(f => {
+    const base = f.replace(IMAGE_RE, '');
+    const dest = FIXED.includes(base)
+      ? base + '.enc'
+      : 'gallery-' + String(++galleryCount).padStart(2, '0') + '.enc';
+    return { src: f, dest };
+  });
 
-for (const f of files) {
+const only = process.argv.slice(2).map(f => path.basename(f).normalize('NFC'));
+const selected = jobs.filter(j => !only.length || only.includes(j.src.normalize('NFC')));
+if (!selected.length) console.log('assets/invite/ 에 암호화할 사진이 없습니다.');
+
+// 전체 실행일 때, 사진이 줄어 남게 된 예전 gallery-NN.enc 는 지움
+if (!only.length) {
+  const keep = new Set(jobs.map(j => j.dest));
+  for (const f of fs.readdirSync(DIR)) {
+    if (/^gallery-\d+\.enc$/.test(f) && !keep.has(f)) {
+      fs.unlinkSync(path.join(DIR, f));
+      console.log(`${f} 삭제 (원본 사진 없음)`);
+    }
+  }
+}
+
+for (const { src: f, dest: destName } of selected) {
   const src = path.join(DIR, f);
   const tmp = resizeToTemp(src);
   const plain = fs.readFileSync(tmp);
@@ -50,7 +79,7 @@ for (const f of files) {
   const iv = crypto.randomBytes(12);
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
   const enc = Buffer.concat([iv, cipher.update(plain), cipher.final(), cipher.getAuthTag()]);
-  const dest = path.join(DIR, f.replace(/\.(jpe?g|png)$/i, '.enc'));
+  const dest = path.join(DIR, destName);
   fs.writeFileSync(dest, enc);
   console.log(`${f} → ${path.basename(dest)} (${(enc.length / 1024).toFixed(0)} KB)`);
 }

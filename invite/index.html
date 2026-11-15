@@ -180,10 +180,50 @@ permalink: /invite/
     .dday .count i.days { min-width: 0; }
 
     /* Gallery */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-    .gallery div { aspect-ratio: 1; background: #f0f2ee; }
-    .gallery div:nth-child(3n+2) { background: #e8ece6; }
-    .gallery div:nth-child(4n) { background: #f5f6f3; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .g-item {
+      display: block; aspect-ratio: 2 / 3; overflow: hidden;
+      border: 0; padding: 0; background: #eef1ec; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .g-item:nth-child(2n) { background: #e8ece6; }
+    .g-item img {
+      display: block; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity .6s ease;
+    }
+    .g-item img.loaded { opacity: 1; }
+    .g-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .gallery-hint { margin-top: 18px; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+
+    /* 갤러리 사진 크게 보기 */
+    .viewer {
+      position: fixed; inset: 0; z-index: 12; background: rgba(20,24,21,.96);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility 0s linear .25s;
+      touch-action: none; -webkit-user-select: none; user-select: none;
+    }
+    .viewer.open { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+    .viewer-img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      padding: calc(env(safe-area-inset-top, 0px) + 52px) 0 calc(env(safe-area-inset-bottom, 0px) + 52px);
+      -webkit-user-drag: none; -webkit-touch-callout: none;
+    }
+    .viewer button {
+      position: absolute; border: 0; background: none; color: #fff; cursor: pointer;
+      width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .viewer button svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); }
+    .viewer-close { top: calc(env(safe-area-inset-top, 0px) + 4px); right: 4px; }
+    .viewer-prev, .viewer-next { top: 50%; transform: translateY(-50%); opacity: .8; }
+    .viewer-prev { left: 2px; }
+    .viewer-next { right: 2px; }
+    .viewer-count {
+      position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+      text-align: center; color: rgba(255,255,255,.8);
+      font-family: var(--serif-en); font-size: 16px; letter-spacing: .12em;
+      font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1;
+    }
 
     /* Location */
     .venue { font-size: 17px; font-weight: 500; letter-spacing: .06em; }
@@ -369,11 +409,14 @@ permalink: /invite/
     <!-- 갤러리 -->
     <section>
       <div class="eyebrow">Gallery</div>
-      <div class="gallery">
-        <div></div><div></div><div></div>
-        <div></div><div></div><div></div>
-        <div></div><div></div><div></div>
+      {%- comment %} assets/invite/gallery-NN.enc 를 번호 순서대로 자동으로 나열 (_tools/encrypt-invite-images.js 가 생성) {% endcomment %}
+      {%- assign gallery = site.static_files | where_exp: "f", "f.path contains '/assets/invite/gallery-'" | where: "extname", ".enc" | sort: "path" %}
+      <div class="gallery" id="gallery">
+        {%- for f in gallery %}
+        <button type="button" class="g-item" aria-label="사진 {{ forloop.index }} 크게 보기"><img alt="정현준과 이수진의 웨딩 사진 {{ forloop.index }}" data-enc="{{ f.path | relative_url }}"></button>
+        {%- endfor %}
       </div>
+      <p class="gallery-hint">사진을 누르면 크게 볼 수 있습니다</p>
     </section>
 
     <!-- 오시는 길 -->
@@ -431,6 +474,15 @@ permalink: /invite/
   <canvas id="petals" aria-hidden="true"></canvas>
 
   <!-- 카카오맵 지도 퍼가기: 설치 스크립트 + 실행 (지도 크기는 화면 폭에 맞춤) -->
+  <!-- 갤러리 사진 크게 보기 -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="사진 크게 보기" aria-hidden="true">
+    <img class="viewer-img" id="viewer-img" alt="">
+    <button type="button" class="viewer-close" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <button type="button" class="viewer-prev" aria-label="이전 사진"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+    <button type="button" class="viewer-next" aria-label="다음 사진"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+    <div class="viewer-count" id="viewer-count"></div>
+  </div>
+
   <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js"></script>
   <script charset="UTF-8">
     (function () {
@@ -561,6 +613,92 @@ permalink: /invite/
 
     // 커버 메인 사진도 같은 방식으로 복호화 (인트로가 도는 동안 미리 준비)
     loadEncryptedImage(document.getElementById('cover-img')).catch(function () {});
+
+    // 갤러리: 암호화된 사진을 화면에 가까워질 때 복호화해 채우고, 누르면 크게 보기
+    (function gallery() {
+      var items = Array.prototype.slice.call(document.querySelectorAll('#gallery .g-item'));
+      if (!items.length) return;
+      var imgs = items.map(function (b) { return b.querySelector('img'); });
+      var loads = [];
+      function load(i) {
+        if (!loads[i]) {
+          loads[i] = loadEncryptedImage(imgs[i]);
+          loads[i].catch(function () { loads[i] = null; });  // 실패하면 다음에 다시 시도
+        }
+        return loads[i];
+      }
+      function loadAll() { items.forEach(function (_, i) { load(i).catch(function () {}); }); }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); loadAll(); }
+        }, { rootMargin: '150% 0px' });
+        io.observe(document.getElementById('gallery'));
+      } else {
+        loadAll();
+      }
+
+      var viewer = document.getElementById('viewer');
+      var big = document.getElementById('viewer-img');
+      var count = document.getElementById('viewer-count');
+      var cur = -1, opener = null;
+
+      function show(i) {
+        cur = (i + items.length) % items.length;
+        count.textContent = (cur + 1) + ' / ' + items.length;
+        var want = cur;
+        big.style.opacity = imgs[want].classList.contains('loaded') ? 1 : 0;
+        if (imgs[want].classList.contains('loaded')) big.src = imgs[want].src;
+        load(want).then(function () {
+          if (cur !== want) return;
+          big.src = imgs[want].src;
+          big.alt = imgs[want].alt;
+          big.style.opacity = 1;
+        }, function () {});
+      }
+      function open(i) {
+        opener = items[i];
+        show(i);
+        viewer.classList.add('open');
+        viewer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('locked');
+        viewer.querySelector('.viewer-close').focus();
+      }
+      function close() {
+        viewer.classList.remove('open');
+        viewer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('locked');
+        cur = -1;
+        if (opener) opener.focus({ preventScroll: true });
+      }
+      items.forEach(function (b, i) { b.addEventListener('click', function () { open(i); }); });
+      viewer.querySelector('.viewer-close').addEventListener('click', close);
+      viewer.querySelector('.viewer-prev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+      viewer.querySelector('.viewer-next').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+      // 사진 바깥(어두운 배경)을 누르면 닫기
+      viewer.addEventListener('click', function (e) { if (e.target === viewer) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (cur < 0) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(cur - 1);
+        else if (e.key === 'ArrowRight') show(cur + 1);
+      });
+      // 좌우로 밀어 넘기기, 아래로 밀어 닫기
+      var sx = 0, sy = 0, tracking = false;
+      viewer.addEventListener('touchstart', function (e) {
+        tracking = e.touches.length === 1;
+        if (tracking) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
+      }, { passive: true });
+      viewer.addEventListener('touchend', function (e) {
+        if (!tracking) return;
+        tracking = false;
+        var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) show(cur + (dx < 0 ? 1 : -1));
+        else if (dy > 80 && dy > Math.abs(dx) * 1.5) close();
+      }, { passive: true });
+      // 길게 눌러 저장/끌어다 놓기 방지
+      big.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      big.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    })();
 
     // 스크롤할 때마다 장면이 차례로 나타나게 (인트로가 끝난 뒤 시작)
     (function scenes() {
