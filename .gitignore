@@ -8,3 +8,5 @@ vendor
 /assets/invite/*.jpg
 /assets/invite/*.jpeg
 /assets/invite/*.png
+# 청첩장: 계좌 정보 원본도 올리지 않음 (accounts.enc만 커밋)
+/assets/invite/accounts.json

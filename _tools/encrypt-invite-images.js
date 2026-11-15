@@ -10,6 +10,10 @@
 //     그 밖의 사진         → 갤러리 사진. 파일 이름 순서대로 gallery-01.enc, gallery-02.enc …
 //   갤러리는 페이지가 gallery-*.enc 를 자동으로 찾아 번호 순서대로 보여 줍니다.
 //   (사진을 추가·삭제하거나 순서를 바꾸면 번호가 달라지므로 인자 없이 전체를 다시 실행하세요)
+// - 계좌 정보: assets/invite/accounts.json 이 있으면 같은 방식으로 accounts.enc 를 만듭니다.
+//     node _tools/encrypt-invite-images.js accounts.json     # 계좌 정보만 다시 암호화
+//   형식: { "groom": [{ "bank": "○○은행", "number": "000-0000-0000", "name": "홍길동" }], "bride": [ … ] }
+//   (한쪽에 여러 계좌를 넣을 수 있고, accounts.json 은 .gitignore 에 들어 있어 git에 올라가지 않습니다)
 // - 원본 사진은 .gitignore에 들어 있어 git에는 .enc 파일만 올라갑니다.
 // - 키는 청첩장 주소("with1015.github.io/invite/")의 SHA-256 값입니다.
 //   페이지도 자기 주소로 같은 키를 만들어 사진을 풉니다. (따로 보관할 키 파일 없음)
@@ -57,7 +61,19 @@ const jobs = fs.readdirSync(DIR)
 
 const only = process.argv.slice(2).map(f => path.basename(f).normalize('NFC'));
 const selected = jobs.filter(j => !only.length || only.includes(j.src.normalize('NFC')));
-if (!selected.length) console.log('assets/invite/ 에 암호화할 사진이 없습니다.');
+
+// 계좌 정보: assets/invite/accounts.json (git에 올리지 않음) → accounts.enc
+const ACCOUNTS = 'accounts.json';
+const doAccounts = fs.existsSync(path.join(DIR, ACCOUNTS)) && (!only.length || only.includes(ACCOUNTS));
+if (!selected.length && !doAccounts) console.log('assets/invite/ 에 암호화할 파일이 없습니다.');
+
+function encryptTo(plain, destName) {
+  const iv = crypto.randomBytes(12);
+  const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
+  const enc = Buffer.concat([iv, cipher.update(plain), cipher.final(), cipher.getAuthTag()]);
+  fs.writeFileSync(path.join(DIR, destName), enc);
+  return enc.length;
+}
 
 // 전체 실행일 때, 사진이 줄어 남게 된 예전 gallery-NN.enc 는 지움
 if (!only.length) {
@@ -76,10 +92,30 @@ for (const { src: f, dest: destName } of selected) {
   const plain = fs.readFileSync(tmp);
   fs.unlinkSync(tmp);
 
-  const iv = crypto.randomBytes(12);
-  const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
-  const enc = Buffer.concat([iv, cipher.update(plain), cipher.final(), cipher.getAuthTag()]);
-  const dest = path.join(DIR, destName);
-  fs.writeFileSync(dest, enc);
-  console.log(`${f} → ${path.basename(dest)} (${(enc.length / 1024).toFixed(0)} KB)`);
+  const size = encryptTo(plain, destName);
+  console.log(`${f} → ${destName} (${(size / 1024).toFixed(0)} KB)`);
+}
+
+if (doAccounts) {
+  const raw = fs.readFileSync(path.join(DIR, ACCOUNTS), 'utf8');
+  let data;
+  try { data = JSON.parse(raw); } catch (e) {
+    console.error(`${ACCOUNTS}: JSON 형식이 잘못되었습니다 (${e.message})`);
+    process.exit(1);
+  }
+  for (const side of ['groom', 'bride']) {
+    for (const a of data[side] || []) {
+      if (!a.bank || !a.number || !a.name) {
+        console.error(`${ACCOUNTS}: ${side} 항목에 bank / number / name 이 모두 있어야 합니다`);
+        process.exit(1);
+      }
+    }
+  }
+  // 페이지가 쓰는 값만 남겨 암호화
+  const clean = {};
+  for (const side of ['groom', 'bride']) {
+    clean[side] = (data[side] || []).map(a => ({ bank: String(a.bank), number: String(a.number), name: String(a.name) }));
+  }
+  const size = encryptTo(Buffer.from(JSON.stringify(clean), 'utf8'), 'accounts.enc');
+  console.log(`${ACCOUNTS} → accounts.enc (${size} bytes, 신랑측 ${clean.groom.length}건 · 신부측 ${clean.bride.length}건)`);
 }

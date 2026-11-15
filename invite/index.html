@@ -261,6 +261,7 @@ permalink: /invite/
     details[open] summary::after { transform: rotate(-135deg) translateY(-1px); }
     .acct { display: flex; justify-content: space-between; align-items: center; padding: 0 4px 18px; font-size: 14px; }
     .acct .btn { flex: none; width: auto; padding: 6px 14px; font-size: 12px; }
+    .acct-empty { padding: 0 4px 18px; font-size: 13px; color: var(--muted); }
 
     footer { padding: 56px 32px 72px; text-align: center; font-size: 13px; color: var(--muted); }
     footer .sign { margin-top: 28px; font-family: var(--serif-en); font-style: italic; font-size: 22px; font-weight: 300; color: var(--accent); }
@@ -451,14 +452,18 @@ permalink: /invite/
       <div class="eyebrow">With Gratitude</div>
       <h2>마음 전하실 곳</h2>
       <p class="account-note">참석이 어려우신 분들을 위해<br>계좌번호를 안내드립니다.</p>
-      <details>
-        <summary>신랑측 계좌번호</summary>
-        <div class="acct"><span>○○은행 000-0000-0000<br><span class="muted">정현준</span></span><button class="btn" data-copy="000-0000-0000">복사</button></div>
-      </details>
-      <details>
-        <summary>신부측 계좌번호</summary>
-        <div class="acct"><span>○○은행 000-0000-0000<br><span class="muted">이수진</span></span><button class="btn" data-copy="000-0000-0000">복사</button></div>
-      </details>
+      <!-- 계좌 정보는 코드에 적지 않음: 암호화된 accounts.enc 를 복호화해서 아래 두 칸을 채움
+           (원본은 git에 올리지 않는 assets/invite/accounts.json, _tools/encrypt-invite-images.js 로 암호화) -->
+      <div id="accounts" data-enc="{{ '/assets/invite/accounts.enc' | relative_url }}">
+        <details>
+          <summary>신랑측 계좌번호</summary>
+          <div class="acct-list" data-side="groom"></div>
+        </details>
+        <details>
+          <summary>신부측 계좌번호</summary>
+          <div class="acct-list" data-side="bride"></div>
+        </details>
+      </div>
     </section>
 
     <footer>
@@ -527,16 +532,20 @@ permalink: /invite/
       }
       return inviteKeyPromise;
     }
-    function loadEncryptedImage(img) {
+    // .enc 파일을 받아 복호화한 원본 바이트(ArrayBuffer)를 돌려줌
+    function fetchDecrypted(url) {
       return importInviteKey().then(function (key) {
-        return fetch(img.dataset.enc).then(function (r) {
+        return fetch(url).then(function (r) {
           if (!r.ok) throw new Error('fetch ' + r.status);
           return r.arrayBuffer();
         }).then(function (buf) {
           var data = new Uint8Array(buf);
           return crypto.subtle.decrypt({ name: 'AES-GCM', iv: data.slice(0, 12) }, key, data.slice(12));
         });
-      }).then(function (plain) {
+      });
+    }
+    function loadEncryptedImage(img) {
+      return fetchDecrypted(img.dataset.enc).then(function (plain) {
         return new Promise(function (resolve, reject) {
           img.onload = function () { img.classList.add('loaded'); resolve(); };
           img.onerror = reject;
@@ -780,9 +789,47 @@ permalink: /invite/
         navigator.clipboard.writeText(text).then(function () { toast(msg); }, function () { toast('복사에 실패했습니다'); });
       } else { toast('복사에 실패했습니다'); }
     }
-    document.querySelectorAll('[data-copy]').forEach(function (b) {
-      b.addEventListener('click', function () { copy(b.dataset.copy, '계좌번호가 복사되었습니다'); });
-    });
+    // 계좌 정보: 암호화된 accounts.enc 를 복호화해서 신랑측/신부측 칸에 채움
+    //  형식: { "groom": [{ "bank": "", "number": "", "name": "" }, …], "bride": [ … ] }
+    (function accounts() {
+      var box = document.getElementById('accounts');
+      var lists = box.querySelectorAll('.acct-list');
+      function note(list, msg) {
+        var p = document.createElement('p');
+        p.className = 'acct-empty';
+        p.textContent = msg;
+        list.appendChild(p);
+      }
+      function row(a) {
+        var div = document.createElement('div');
+        div.className = 'acct';
+        var info = document.createElement('span');
+        info.appendChild(document.createTextNode(a.bank + ' ' + a.number));
+        info.appendChild(document.createElement('br'));
+        var name = document.createElement('span');
+        name.className = 'muted';
+        name.textContent = a.name;
+        info.appendChild(name);
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn';
+        btn.textContent = '복사';
+        btn.addEventListener('click', function () { copy(String(a.number), '계좌번호가 복사되었습니다'); });
+        div.appendChild(info);
+        div.appendChild(btn);
+        return div;
+      }
+      fetchDecrypted(box.dataset.enc).then(function (plain) {
+        var data = JSON.parse(new TextDecoder().decode(plain));
+        Array.prototype.forEach.call(lists, function (list) {
+          var rows = data[list.dataset.side] || [];
+          if (!rows.length) return note(list, '계좌 정보가 준비 중입니다.');
+          rows.forEach(function (a) { list.appendChild(row(a)); });
+        });
+      }).catch(function () {
+        Array.prototype.forEach.call(lists, function (list) { note(list, '계좌 정보를 불러오지 못했습니다.'); });
+      });
+    })();
     document.getElementById('share').addEventListener('click', function () {
       copy(location.href, '링크가 복사되었습니다');
     });
