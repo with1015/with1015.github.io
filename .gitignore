@@ -10,3 +10,5 @@ vendor
 /assets/invite/*.png
 # 청첩장: 계좌 정보 원본도 올리지 않음 (accounts.enc만 커밋)
 /assets/invite/accounts.json
+# 청첩장: 교체 전 원본 사진 백업
+/assets/invite/*.bak
